@@ -100,9 +100,10 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    //return CGSizeMake( self.view.frame.size.width / 3, 140);
-    return CGSizeMake( 100, 100);
+   // return CGSizeMake(self.view.frame.size.width / 3, 200);
+    return CGSizeMake(100, 100);
 }
+
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -249,6 +250,8 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
     //selectPhotoBtnOutlet.hidden=YES;
     //takePhotoBtnOutlet.hidden=YES;
     __block ViewController *aBlockSelf = self; // Replace MyViewController with your View Controller
+  
+    
     [picker dismissViewControllerAnimated:YES completion:^{
         //aBlockSelf.productImg.hidden = NO;
         // aBlockSelf.makeTF.hidden = NO;
@@ -258,14 +261,14 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info {
         //aBlockSelf.productImg.image = chosenImage;
         //[aBlockSelf.arrayOfImages a:chosenImage];
         [aBlockSelf.arrayOfImages replaceObjectAtIndex:self.selectedPath.row withObject:chosenImage];
-        if([aBlockSelf.arrayOfImages count]< NUMBER_OF_IMAGES)
+        if([aBlockSelf.arrayOfImages count] < NUMBER_OF_IMAGES)
         {
             [aBlockSelf.arrayOfImages addObject:[UIImage imageNamed:@"photo.png"]];
         }
         
         [self.myCollectionView reloadData];
         
-        [self.myCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:[aBlockSelf.arrayOfImages count]-1 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
+        [self.myCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:[aBlockSelf.arrayOfImages count] - 1 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionCenteredHorizontally];
 
         if (source == UIImagePickerControllerSourceTypeCamera) {
             [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
